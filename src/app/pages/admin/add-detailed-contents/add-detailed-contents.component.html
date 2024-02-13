@@ -1,0 +1,56 @@
+<mat-card class="p-4 mt-3">
+    <h1 class="text-2xl font-bold mb-4">Add Detailed Contents To  <strong><span>{{qTitle}}</span></strong></h1>
+    
+    <mat-card-content>
+      <form (ngSubmit)="formSubmit()" class="grid grid-cols-3 gap-4" enctype="multipart/form-data">
+  
+        <!-- Title field -->
+        <div class="col-span-3">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Title</mat-label>
+            <input [(ngModel)]="detailedcontent.title" type="text" name="title" placeholder="Enter here" matInput required>
+          </mat-form-field>
+        </div>
+  
+        <!-- Description field -->
+        <div class="col-span-3">
+          <ckeditor 
+            [editor]="Editor" 
+            data="<p>Write Your Detailed-Contents Here</p>"
+            name="description"
+            [(ngModel)]="detailedcontent.description"
+          ></ckeditor>
+        </div>
+  
+        <!-- Content Image field -->
+        <div class="col-span-3">
+          <label for="fileInput">Dc Image</label>
+          <input id="fileInput" #fileInput type="file" (change)="onImageSelected($event)" accept="image/*" />
+          <span>Choose File</span>
+        </div>
+  
+        <!-- Audio File field -->
+        <div class="col-span-3">
+          <label for="audioInput">Audio File</label>
+          <input id="audioInput" #audioInput type="file" (change)="onAudioSelected($event)" accept="audio/*" />
+          <span>Choose Audio File</span>
+        </div>
+  
+        <!-- Content Link Reference field -->
+        <div class="col-span-3">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Dc_link Reference</mat-label>
+            <input [(ngModel)]="detailedcontent.dc_link" type="text" name="dc_link" placeholder="Enter here" matInput>
+          </mat-form-field>
+        </div>
+  
+        <!-- Submit button -->
+        <div class="col-span-3 text-center  ">
+          <button mat-raised-button color="accent" type="submit">Add New dc_Content</button>
+        </div>
+  
+      </form>
+    </mat-card-content>
+  </mat-card>
+  {{ detailedcontent | json }}
+  

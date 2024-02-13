@@ -1,0 +1,65 @@
+ <!-- navbar.component.html -->
+
+<div class="bg-pink-500 text-white fixed w-full top-0 z-10">
+  <div class=" container mx-auto px-4 flex justify-between items-center py-2">
+
+    <!-- Left side: Menu button and SumTalks title -->
+    <div class="flex items-center">
+      <!-- Angular Material menu button -->
+      <!-- if(this.login.isLoggedIn() && this.login.getUserRole()==='General USER'){ -->
+      <button mat-icon-button *ngIf="isGeneralUser()" [matMenuTriggerFor]="menu" class="mr-2">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- MatMenu containing list of menu items -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item  routerLink="/user-dashboard/contents">sumTalksSayree</button>
+        <button mat-menu-item  routerLink="/user-dashboard/contents">sumTalksProject</button>
+        <button mat-menu-item  routerLink="/user-dashboard/contents">sumTalksTechie</button>
+      </mat-menu>
+
+      <!-- Staggered animation for SumTalks -->
+      <div [@staggerAnimation]="staggeredAnimation" class=" text-2xl font-bold  ml-1  staggered-animation">
+        <h1 class="inline-block" (click)="triggerAnimation()">s</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">u</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">m</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">T</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">a</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">l</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">k</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">s</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+        <!-- <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+        <h1 class="inline-block" (click)="triggerAnimation()">.</h1>
+         -->
+      </div>
+    </div>
+
+    <!-- Right side: Login, Signup, Logout, and Username -->
+    <div class="flex items-center space-x-4 ">
+      <!-- Login and Signup buttons when not logged in -->
+      <ng-container *ngIf="!isLoggedIn">
+        <a [routerLink]="'/login'" mat-icon-button class="mr-2  ">
+          <mat-icon >login</mat-icon>
+        </a>
+        <a [routerLink]="'/signup'" mat-icon-button class="mr-2">
+          <mat-icon><span class="material-symbols-outlined">how_to_reg</span></mat-icon>
+        </a>
+      </ng-container>
+
+      <!-- Display username and logout when logged in -->
+      <ng-container *ngIf="isLoggedIn && user">
+        <span class="italic-username mr-1 talk" [routerLink]="'/admin/profile'" style="cursor: pointer;">
+          {{ user.fullName }}
+        </span>
+        <a mat-icon-button (click)="logout()" aria-label="Logout">
+          <mat-icon>power_settings_new</mat-icon>
+        </a>
+      </ng-container>
+    </div>
+
+  </div>
+</div>

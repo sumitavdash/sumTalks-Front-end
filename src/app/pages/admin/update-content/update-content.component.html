@@ -1,0 +1,78 @@
+<mat-card class="p-4">
+    <h1 class="text-2xl font-bold mb-4">Update Content</h1>
+
+    <mat-card-content>
+        <form *ngIf="content" (ngSubmit)="updateData()" class="grid grid-cols-3 gap-4">
+
+            <!-- Title field -->
+            <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Title</mat-label>
+                    <input [(ngModel)]="content.title" type="text" name="title" matInput required>
+                </mat-form-field>
+            </div>
+
+            <!-- Description field -->
+            <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Description</mat-label>
+                    <textarea [(ngModel)]="content.description" type="text" name="description" matInput
+                        rows="5"></textarea>
+                </mat-form-field>
+            </div>
+
+             <!-- Field to select a new image -->
+                        <!-- <mat-form-field class="w-full" appearance="fill">
+                        <mat-label>Updated Content Image</mat-label>
+                        <input type="file" (change)="onFileSelected($event)">
+                        </mat-form-field> -->
+
+
+                   <!-- Field to select a new image -->
+                        <div class="w-full">
+                            <label for="fileInput">Updated Content Image</label>
+                            <input id="fileInput"   type="file" (change)="onFileSelected($event)" accept="image/*" />
+                            <span>Choose File</span>
+                          </div>
+
+             <!-- Field to display current image -->
+                <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Content Image</mat-label>
+                <input [(ngModel)]="content.conImage" type="text" name="conImage" matInput>
+                </mat-form-field>
+
+            <!-- Content Link Reference field -->
+            <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Content Link Reference</mat-label>
+                    <input [(ngModel)]="content.link_url" type="text" name="link_url" matInput>
+                </mat-form-field>
+            </div>
+
+            <!-- Category selection -->
+            <div class="w-full">
+                <mat-form-field appearance="fill">
+                    <mat-label>Categories</mat-label>
+                    <mat-select name="category" [(ngModel)]="content.category.cid">
+                        <mat-option *ngFor="let c of categories" [value]="c.cid">{{ c.title }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- Publish Status toggle -->
+            <div class="flex items-center space-x-2 mt-2">
+                <span class="text-gray-600">Inactive</span>
+                <mat-slide-toggle name="active" [(ngModel)]="content.active"></mat-slide-toggle>
+                <span class="text-gray-600">Active</span>
+            </div>
+
+
+
+            <!-- Submit button -->
+            <div class="col-span-3 text-center mt-2">
+                <button  mat-raised-button color="accent" type="submit">Update</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

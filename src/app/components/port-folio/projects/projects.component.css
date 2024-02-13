@@ -1,0 +1,49 @@
+ 
+
+   .container{
+    gap:2rem;
+    display: grid;
+    white-space: nowrap; /* Prevent containers from wrapping */
+    font-size: 0;
+}
+
+   h1{
+    padding: 1rem 0;
+    text-align: center;
+    letter-spacing: 1px;
+    color: var(--darky-pink);
+    outline: 1px solid white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+:host{
+  display:block;
+  color: white;
+  padding: 3rem 2rem;
+
+}
+.box {
+  display: inline-block; /* Display boxes inline */
+  width: calc(33.33% - 20px); /* Set width for each box, subtracting margin */
+  margin-right: 20px; /* Add margin between boxes */
+  background-color: #e0e0e0;
+  padding: 20px;
+  box-sizing: border-box; /* Include padding and border in the box's total width */
+}
+
+.box:last-child {
+  margin-right: 0; /* Remove margin from last box */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .box {
+    width: calc(50% - 20px); /* Adjust to 50% width on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .box {
+    width: 100%; /* Adjust to full width on even smaller screens */
+    margin-right: 0; /* Remove margin on smaller screens */
+  }
+}

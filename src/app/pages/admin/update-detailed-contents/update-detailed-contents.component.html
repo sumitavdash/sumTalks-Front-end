@@ -1,0 +1,128 @@
+<!-- <mat-card class="p-4">
+    <h1 class="text-2xl font-bold mb-4">Update Detailed-Content</h1>
+
+    <mat-card-content>
+        <form *ngIf="detailedcontent" (ngSubmit)="updateData()" class="grid grid-cols-3 gap-4">
+
+              <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Title</mat-label>
+                    <input [(ngModel)]="detailedcontent.title" type="text" name="title" matInput required>
+                </mat-form-field>
+            </div>
+         <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Description</mat-label>
+                    <textarea [(ngModel)]="detailedcontent.description" type="text" name="description" matInput
+                        rows="5"></textarea>
+                </mat-form-field>
+            </div>
+
+                      <div class="w-full">
+                            <label for="fileInput">Updated Content Image</label>
+                            <input id="fileInput"   type="file" (change)="onFileSelected($event)" accept="image/*" />
+                            <span>Choose File</span>
+                          </div>
+
+                  <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Content Image</mat-label>
+                <input [(ngModel)]="detailedcontent.conImage" type="text" name="conImage" matInput>
+                </mat-form-field>
+
+             <div>
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Content Link Reference</mat-label>
+                    <input [(ngModel)]="detailedcontent.link_url" type="text" name="link_url" matInput>
+                </mat-form-field>
+            </div>
+
+              <div class="w-full">
+                <mat-form-field appearance="fill">
+                    <mat-label>Contents</mat-label>
+                    <mat-select name="content" [(ngModel)]="detailedcontent.content.conId">
+                        <mat-option *ngFor="let c of contents" [value]="c.conId">{{ c.title }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+             
+
+
+
+             <div class="col-span-3 text-center mt-2">
+                <button  mat-raised-button color="accent" type="submit">Update</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card> -->
+<mat-card class="p-4 mt-3">
+    <h1 class="text-2xl font-bold mb-4">Update Detailed Content</h1>
+    
+    <mat-card-content>
+      <form *ngIf="detailedcontent" (ngSubmit)="updateDeatiledContent()" class="grid grid-cols-3 gap-4" enctype="multipart/form-data">
+  
+        <!-- Title field -->
+        <div class="col-span-3">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Title</mat-label>
+            <input [(ngModel)]="detailedcontent.title" type="text" name="title" placeholder="Enter here" matInput required>
+          </mat-form-field>
+        </div>
+  
+        <!-- Description field -->
+        <div class="col-span-3">
+          <ckeditor 
+            [editor]="Editor" 
+            data="<p>Write Your Detailed-Contents Here</p>"
+            name="description"
+            [(ngModel)]="detailedcontent.description"
+          ></ckeditor>
+        </div>
+  
+        <!-- DetailedContent Image field -->
+        <div class="col-span-3">
+          <label for="fileInput">UpdatedImage</label>
+          <input id="fileInput" #fileInput type="file" (change)="onImageSelected($event)" accept="image/*" />
+          <span>Choose File</span>
+        </div>
+
+        <!-- Field to display current image -->
+        <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Dc Image</mat-label>
+            <input [(ngModel)]="detailedcontent.dc_imageUrl" type="text" name="dc_imageUrl" matInput>
+            </mat-form-field>
+
+  
+        <!-- DetailedContent Audio File field -->
+        <div class="col-span-3">
+          <label for="audioInput">Audio File</label>
+          <input id="audioInput" #audioInput type="file" (change)="onAudioSelected($event)" accept="audio/*" />
+          <span>Choose Audio File</span>
+        </div>
+
+        <!-- Field to display current Audio -->
+        <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Dc Audio</mat-label>
+            <input [(ngModel)]="detailedcontent.dc_audioPath" type="text" name="dc_audioPath" matInput>
+            </mat-form-field>
+
+  
+        <!-- Content Link Reference field -->
+        <div class="col-span-3">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Dc_link Reference</mat-label>
+            <input [(ngModel)]="detailedcontent.dc_link" type="text" name="dc_link" placeholder="Enter here" matInput>
+          </mat-form-field>
+        </div>
+  
+        <!-- Submit button -->
+        <div class="col-span-3 text-center">
+          <button mat-raised-button color="accent" type="submit">Update Detailed Content</button>
+        </div>
+  
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <!-- {{ detailedcontent | json }} -->
+  

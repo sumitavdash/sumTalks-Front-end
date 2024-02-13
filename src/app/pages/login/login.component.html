@@ -1,0 +1,31 @@
+ <!-- login.component.html -->
+ 
+<div class="min-h-screen flex-center bg-gray-100">
+  <div class="bg-white p-8 shadow-md rounded-md max-w-md w-full">
+    <div class="text-center bg-sliding-text">
+      <div class="bg-pink-500 text-white p-4 rounded-md">
+        <h1 class="text-3xl font-bold">Sum....Talks.......</h1>
+      </div>
+    </div>
+
+    <div class="card-body text-center">
+      <h1  class="text-blue-800" >Login</h1>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput placeholder="Enter your Email" [(ngModel)]="loginData.email" name="email">
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Enter your password" [(ngModel)]="loginData.password" name="password">
+          </mat-form-field>
+        </div>
+        <button type="submit" class="w-full bg-pink-500 text-white py-2 px-4 rounded-md mt-4">Login</button>
+        <a routerLink="/reset-password" class="forgot-password-link block text-red-500 mt-2">Forgot Password</a>
+      </form>
+    </div>
+  </div>
+</div>

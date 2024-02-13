@@ -1,0 +1,48 @@
+:host{
+    display:block;
+    color:darkblue;
+    padding: 3rem 2rem;
+}
+.container{
+    gap:2rem;
+    display: grid;
+}
+
+h1{
+    padding: 1rem 0;
+    text-align: center;
+    letter-spacing: 1px;
+    color: var(--darky-pink);
+    outline: 1px solid white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.animated-sentence {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .animated-sentence.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .resume {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f5cfcd; /* Button color */
+    clip-path: ellipse(80% 100% at 50% 100% );
+    color: var(--darky-pink);
+    text-decoration: none;
+    /* border-radius: 15px; */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.download-button:hover {
+    background-color: var(--fade-pink); /* Button color on hover #008cb3 rgb(129, 235, 63)*/
+}

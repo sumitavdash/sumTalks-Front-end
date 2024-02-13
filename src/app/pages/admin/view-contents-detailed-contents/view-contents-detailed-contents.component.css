@@ -1,0 +1,17 @@
+ 
+  /* .card-image {
+    width: 100%;  
+    height: auto;  
+  } */
+
+  .sumi{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    object-fit: cover;
+    /* padding: 1rem; */
+    /* display: inline-block; */
+  }
+  .sumi1{
+    object-fit: cover;
+  }

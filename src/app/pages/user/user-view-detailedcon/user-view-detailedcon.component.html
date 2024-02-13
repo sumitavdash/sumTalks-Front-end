@@ -1,0 +1,174 @@
+ 
+ <!--  -->
+ <!--  -->
+ <!-- <h3 class="mt-10">Detailed-Contents Of <strong>{{qTitle}}</strong></h3> -->
+
+ <!-- <div class="text-center mb-4">
+     <button mat-raised-button [routerLink]="'/admin/add-detailedcontent/' + conId + '/' + qTitle"
+             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+     >
+       Add Detailed-content
+     </button>
+   </div> -->
+ 
+   <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+         <ng-container *ngFor="let q of detailedcontents.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)">
+           <!-- LOVE : ENDLESS PASSION ETERNAL CONNECTION Card -->
+           <mat-card *ngIf="qTitle === 'LOVE : ENDLESS PASSION ETERNAL CONNECTION'"
+                     class="w-full sm:w-1/2 lg:w-3/5  mb-8 sumi">
+             <mat-card-header>
+               <mat-card-title>{{ q.title }}</mat-card-title>
+             </mat-card-header>
+             <mat-card-content class="h-64 p-1 w-full p-4 ">
+               <div class="h-64 w-full bg-cover bg-gray-300 sumi1  "
+                    style="background-image: url('{{ q.dc_imageUrl }}'); background-size: cover; background-position: center;">
+                    
+                </div>
+                 
+               </mat-card-content>
+               <div class="flex items-center justify-between py-4">
+                 <!-- Audio button dc_audioPath-->
+                 <button
+                 mat-raised-button
+                 color="accent"
+                 (click)="playAudio(q.detailedConId)"
+                 class=" bg-pink-500 hover:bg-green-700 text-white font-bold bg-cover rounded-full "
+               >
+                 Play Audio
+               </button>
+ 
+               <!-- Stop Audio button -->
+                <button mat-raised-button
+                  color="accent"
+                 (click)="stopAudio(q.detailedConId)"
+                 class="bg-red-500 hover:bg-red-700 text-white font-bold bg-cover rounded-full mr-2">
+                 Stop Audio
+               </button>
+             
+ 
+                 <!-- Delete button -->
+                 <!-- <button mat-icon-button (click)="deleteDetailedContent(q.detailedConId)">
+                   <mat-icon   color="accent">delete</mat-icon>
+                 </button> -->
+ 
+                 <!-- Update button -->
+                 <!-- <button mat-icon-button [routerLink]="'/admin/detailedcontent/' + q.detailedConId" >
+                   <mat-icon    color="accent" type="submit">update</mat-icon>
+                 </button> -->
+               </div>
+              
+           </mat-card>
+ 
+           <!-- PROJECTCRAFT : DIGITAL HUB Card -->
+           <mat-card *ngIf="qTitle === 'PROJECTCRAFT : DIGITAL HUB'"
+                     class="w-full sm:w-1/2 lg:w-3/5 px-4 mb-8 sumi">
+             <mat-card-header>
+               <mat-card-title>{{ q.title }}</mat-card-title>
+             </mat-card-header>
+             <mat-card-content class="h-64 p-1 w-full p-4">
+               <!-- Middle part image -->
+               <div class="h-64 bg-gray-300 mb-4 sumi1"
+                    style="background-image: url('{{ q.dc_imageUrl }}'); background-size: cover; background-position: center;">
+               </div>
+ 
+               <!-- Lower part description -->
+               <div [innerHTML]="q.description" class="mb-4 truncate"></div>
+ 
+               <div class="flex flex-col items-center justify-between">
+                 <!-- Last part dc_link -->
+                 <div class="mb-2">{{ q.dc_link }}</div>
+               </div>
+ 
+             </mat-card-content>
+                 <!-- Update and Delete buttons in one row -->
+                 <div  class="flex items-center justify-between">
+ 
+                     <!-- View Full Description -->
+                     <button  [routerLink]="'/admin/view-full-description/' + conId + '/' + qTitle + '/' + q.detailedConId" mat-raised-button color="accent">
+                         <mat-icon>poll</mat-icon>View
+                       </button>
+ 
+                   <!-- Delete button -->
+                   <!-- <button mat-icon-button (click)="deleteDetailedContent(q.detailedConId)" class="mr-2">
+                     <mat-icon color="accent">delete</mat-icon>
+                   </button> -->
+ 
+                   <!-- Update button -->
+                   <!-- <button mat-icon-button [routerLink]="'/admin/detailedcontent/' + q.detailedConId">
+                     <mat-icon color="accent" type="submit">update</mat-icon>
+                   </button> -->
+                 </div>
+                
+              
+           </mat-card>
+ 
+           <!-- BYTE-BEAUTE : SILICON SYMPHONY Card -->
+           <mat-card *ngIf="qTitle === 'BYTE-BEAUTE : SILLICON SYMPHONY'" class="w-full sm:w-1/2 lg:w-3/5 px-4 mb-8 sumi">
+             <mat-card-header>
+               <mat-card-title>{{ q.title }}</mat-card-title>
+             </mat-card-header>
+             <mat-card-content class="h-64 p-1 w-full p-4">
+               <!-- Middle part image -->
+               <div class="h-64 bg-gray-300 mb-4 sumi1" style="background-image: url('{{ q.dc_imageUrl }}'); background-size: cover; background-position: center;"></div>
+           
+               <!-- Lower section with description and buttons -->
+               <div class="flex flex-col justify-between h-full">
+                 <!-- Description -->
+                 <div [innerHTML]="q.description" class="mb-4 truncate"></div>
+               </div>
+ 
+             </mat-card-content>
+                 <!-- Buttons in one row -->
+                 <div class="flex items-center justify-between mt-auto">
+                   <!-- View Full Description -->
+                   <button [routerLink]="' ' + conId + '/' + qTitle +'/' + q.detailedConId" mat-raised-button color="accent">
+                     <mat-icon>poll</mat-icon>View
+                   </button>
+           
+                   <!-- Delete button -->
+                   <!-- <button mat-icon-button (click)="deleteDetailedContent(q.detailedConId)" class="mr-2">
+                     <mat-icon color="accent">delete</mat-icon>
+                   </button> -->
+           
+                   <!-- Update button -->
+                   <!-- <button mat-icon-button [routerLink]="'/admin/detailedcontent/' + q.detailedConId">
+                     <mat-icon color="accent" type="submit">update</mat-icon>
+                   </button> -->
+                 </div>
+                
+              
+           </mat-card>
+         </ng-container>
+           
+       </div>
+ 
+       
+       <!-- Pagination and Add button container -->
+ <div class="flex justify-between items-center mt-4 mx-4">
+ 
+   <!-- "Add Detailed-content" button at bottom left corner -->
+   <!-- <div class="text-left">
+     <button mat-raised-button [routerLink]="'/admin/add-detailedcontent/' + conId + '/' + qTitle"
+             class=" mat-accent    text-white font-bold py-2 px-4 mb-2 rounded-full">
+       Add New
+     </button>
+   </div> -->
+  
+ 
+     <!-- Pagination controls -->
+   <div class="text-right">
+     <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 1"
+             class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-2 rounded-full">
+       Previous
+     </button>
+     <span class="mx-4">{{ currentPage }}</span>
+     <button mat-raised-button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= detailedcontents.length"
+             class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-2 rounded-full">
+       Next
+     </button>
+   </div>
+ </div>
+     <!-- </div>
+   </div>
+ </div> -->
+ 

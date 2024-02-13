@@ -1,0 +1,29 @@
+<div   class="container">
+
+    <div class="title" style="margin-top: 20px;">
+        <span>My portfolio</span>
+    </div>
+
+    <ng-particles
+        [id]="'particles1'"
+        [options]="particlesOptions"
+        [particlesInit]="particlesInit"
+        (particlesLoaded)="particlesLoaded($event)"
+    ></ng-particles>
+
+    <div class="name">
+
+        <span>
+            <span><strong><i>Hi,</i></strong></span> I am
+        </span><br>
+        <span>Sumitav Dash</span><br>
+        <span>Software Developer</span>
+    </div>
+
+    <div class="profile">
+        <div class="profile-bg"></div>
+        <img src="../assets/sumit.jpg" alt="">
+    </div>
+
+     
+</div>

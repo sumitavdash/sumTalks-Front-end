@@ -1,0 +1,37 @@
+.staggered-animation {
+    color:  #FF007F ;
+    background-color:  #F9CCCA  ;
+    clip-path: ellipse(80% 100% at 50% 100% );
+     
+     
+  }
+  .talk{
+    background-color:  #F9CCCA  ;
+    clip-path: ellipse(90% 100% at 50% 100% );
+    font-style: italic;
+     margin-left: 3px;
+     color:  #FF007F ;
+     font-weight: bold;
+  }
+  .bg-pink-500 {
+    max-height: 80px; /* Set your desired maximum height */
+    overflow: hidden; /* Hide any content that exceeds the maximum height */
+  }
+  .staggered-animation h1 {
+    font-size: 1rem; /* Adjust the value based on your preference */
+    font-weight: bolder;
+    /* Add other styles if needed */
+  }
+
+  /* .talk1 {
+    background-color:  #F9CCCA  ;
+    clip-path: ellipse(90% 100% at 50% 100% );
+    display: inline-block;
+  } */
+  .bg-pink-500 .mat-icon-button,
+  .bg-pink-500 .login-button,
+  .bg-pink-500 .signup-button,
+  .bg-pink-500 .logout-button {
+    border-radius: 50%;
+    background-color:  #F9CCCA  ;
+  }

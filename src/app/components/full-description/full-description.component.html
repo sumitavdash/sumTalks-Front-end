@@ -1,0 +1,22 @@
+<mat-card *ngIf="detailedContent" class="md:max-w-[400px] lg:max-w-[600px] mx-auto overflow-y-auto">
+  <!-- Other card content -->
+
+  <mat-card-header>
+    <mat-card-title>{{ detailedContent.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="p-6">
+    <!-- Back button -->
+    <button class="mt-8 mb-5" mat-button color="primary"   >
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+
+    <!-- Display the long description content -->
+    <div [innerHTML]="detailedContent.description" class="whitespace-pre-line"></div>
+
+    <!-- Additional details or buttons as needed -->
+  </mat-card-content>
+
+  <button class="mt-6 mb-8" mat-button color="primary"  >
+    <mat-icon>arrow_back</mat-icon> Back
+  </button>
+</mat-card>

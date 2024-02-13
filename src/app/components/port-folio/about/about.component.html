@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class="title">
+        <span>About Me:</span>
+    </h1>
+
+    <section>
+        <p *ngFor="let sentence of aboutMe" class="animated-sentence">
+          {{ sentence }}
+        </p>
+      </section>
+
+      <div class="resume">
+        <a href="path/to/resume.pdf" download class="download-button">
+            <strong>Download Resume</strong>
+        </a>
+    </div>
+</div>

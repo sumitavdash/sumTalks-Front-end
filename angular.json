@@ -25,7 +25,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/tailwindcss/base.css",
+              "./node_modules/tailwindcss/components.css",
+              "./node_modules/tailwindcss/utilities.css"
             ],
             "scripts": []
           },
@@ -66,6 +70,9 @@
               "browserTarget": "sumTalks-Front-End:build:development"
             }
           },
+          "options": {
+            "port": 4201   
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -87,7 +94,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/tailwindcss/base.css",
+              "./node_modules/tailwindcss/components.css",
+              "./node_modules/tailwindcss/utilities.css"
+               
             ],
             "scripts": []
           }

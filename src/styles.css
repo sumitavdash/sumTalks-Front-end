@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+ 
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+ 
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+ 
+.container{
+    margin: 0 auto;
+    max-width: 1500px;
+    outline: 0px solid white;
+}
+
+body{
+    font-family: 'Roboto Condensed',sans-serif;
+    font-family: 'Poppins',sans-serif;
+}
+:root{
+    --pinky: #f074ba;
+    --fade-pink:#F8BBD0;
+    --dark-pink: #FDE9EA;
+    --pin: #F48FB1;
+    --darky-pink:#FF4081;
+    --black:#FF80AB;
+    --gray-light: #630b6781;
+
+}
+
+/* *{
+    margin: 0%;
+    box-sizing: border-box;
+} */

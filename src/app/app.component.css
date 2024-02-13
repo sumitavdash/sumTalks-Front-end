@@ -1,0 +1,6 @@
+:host{
+    display:block;
+    /* padding: 4rem 2rem 6 rem; */
+    background-color: var(--fade-pink);
+    /* clip-path:polygon(0% 0%, 100% 0%,100% 95%,50% 100%,0% 95%); */
+}
