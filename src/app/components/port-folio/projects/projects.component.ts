@@ -10,16 +10,16 @@ export class ProjectsComponent implements OnInit{
  
   images: string[] = [
     '../assets/beuty.png',
-    '../assets/beuty.png',
+    '../assets/chatapp.png',
     '../assets/learn.jpg',
     // Add more image paths as needed
   ];
   currentImageIndex = 0;
 
   projectLinks: string[] = [
-         'https://github.com/sumitavdash/BackEnd-spring-2.5.4-Angular.16.1x-eLearning-app.git',
-        'https://github.com/sumitavdash/BackEnd-spring-2.5.4-Angular.16.2x-eLearning-app.git',
-        'https://github.com/sumitavdash/BackEnd-spring-2.5.4-Angular.16.3-eLearning-app.git',
+         'https://github.com/sumitavdash/sumTalks-back-end-part.git',
+        'https://github.com/sumitavdash/chatApp-Web-Socket.git',
+        'https://github.com/sumitavdash/BackEnd-spring-2.5.4-Angular.16.x-eLearning-app.git',
         // Add more backend URLs as needed
       ];
 
