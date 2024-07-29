@@ -1,41 +1,43 @@
- <!-- admin-dashboard.component.html -->
+<div class="flex flex-col h-screen">
+   
 
- 
-    
-        <div class="flex h-full bg-pink-300 bg-cover">
-            <!-- Sidebar -->
-            <div class="hidden lg:flex flex-col w-64 bg-pink-500 p-4 mt-14 ">
-                 <mat-action-list>
-                    <button mat-list-item routerLink="/admin/categories">
-                        <mat-icon mat-list-icon>view_list</mat-icon>Categories
-                      </button>
-                    
-                      <button mat-list-item routerLink="/admin/add-category">
-                        <mat-icon mat-list-icon>add_circle</mat-icon>Add Categories
-                      </button>
-                    
-                      <button mat-list-item routerLink="/admin/contents">
-                        <mat-icon mat-list-icon>description</mat-icon>Contents
-                      </button>
-                    
-                      <button mat-list-item routerLink="/admin/add-content">
-                        <mat-icon mat-list-icon>add_box</mat-icon>Add Contents
-                      </button>
-                    
-                       
-                      <button mat-list-item routerLink="/admin/logout">
-                        <mat-icon mat-list-icon>exit_to_app</mat-icon>Log Out
-                      </button>
+  <!-- Main Content Area -->
+  <div class="flex flex-grow bg-pink-300 bg-cover overflow-hidden">
+    <!-- Sidebar -->
+    <div class="hidden lg:flex flex-col w-64 bg-pink-500 p-4 mt-14">
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin/categories">
+          <mat-icon mat-list-icon>view_list</mat-icon>Categories
+        </button>
+        
+        <button mat-list-item routerLink="/admin/add-category">
+          <mat-icon mat-list-icon>add_circle</mat-icon>Add Categories
+        </button>
+        
+        <button mat-list-item routerLink="/admin/contents">
+          <mat-icon mat-list-icon>description</mat-icon>Contents
+        </button>
+        
+        <button mat-list-item routerLink="/admin/add-content">
+          <mat-icon mat-list-icon>add_box</mat-icon>Add Contents
+        </button>
 
-                      
-                 </mat-action-list>
-            </div>
-          
-    
- 
+        <button mat-list-item routerLink="/admin/admin-action-panel">
+          <mat-icon mat-list-icon>admin_panel_settings</mat-icon>Action Panel
+        </button>
+        
+        <button mat-list-item  (click)="logout()">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>Log Out
+        </button>
+      </mat-action-list>
+    </div>
+
     <!-- Content -->
-    <div class="flex-grow p-4 mt-16">
+    <div class="flex-grow p-4 mt-16 overflow-y-auto">
       <router-outlet></router-outlet>
+      <!-- Content area with router outlet -->
     </div>
   </div>
-  
+
+   
+</div>

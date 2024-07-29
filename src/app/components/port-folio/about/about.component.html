@@ -1,17 +1,24 @@
 <div class="container">
-    <h1 class="title">
-        <span>About Me:</span>
-    </h1>
+  <h1 class="title">
+    <span><i><strong>About Me:</strong></i></span>
+  </h1>
 
-    <section>
-        <p *ngFor="let sentence of aboutMe" class="animated-sentence">
-          {{ sentence }}
-        </p>
-      </section>
+  <section>
+    <p *ngFor="let sentence of aboutMe" class="animated-sentence" appScrollAnimation>
+      {{ sentence }}
+    </p>
+  </section>
 
-      <div class="resume">
-        <a href="path/to/resume.pdf" download class="download-button">
-            <strong>Download Resume</strong>
-        </a>
-    </div>
+
+  <div class="resume">
+    <a href="mailto:devsumitav@gmail.com?subject=Resume Request&body=Dear Sumitav,%0D%0A%0D%0AI am impressed with your skills and the projects showcased on your website. I would like to view a copy of your resume for further consideration.%0D%0A%0D%0AThank you.%0D%0A%0D%0ABest regards,%0D%0A" target="_blank" class="download-button">
+      <strong>Download Resume</strong>
+    </a>
+  </div>
+
+  <!-- <div class="resume">
+    <a href="path/to/resume.pdf" download class="download-button">
+      <strong>Download Resume</strong>
+    </a>
+  </div> -->
 </div>

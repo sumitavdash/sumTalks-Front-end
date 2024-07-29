@@ -59,6 +59,8 @@
              
           </mat-card>
 
+           
+
           <!-- PROJECTCRAFT : DIGITAL HUB Card -->
           <mat-card *ngIf="qTitle === 'PROJECTCRAFT : DIGITAL HUB'"
                     class="w-full sm:w-1/2 lg:w-3/5 px-4 mb-8 sumi">
@@ -72,19 +74,26 @@
               </div>
 
               <!-- Lower part description -->
-              <div [innerHTML]="q.description" class="mb-4 truncate"></div>
+              <!-- <div [innerHTML]="q.description" class="mb-4 truncate"></div> -->
 
-              <div class="flex flex-col items-center justify-between">
-                <!-- Last part dc_link -->
-                <div class="mb-2">{{ q.dc_link }}</div>
-              </div>
+               
+
+              <!-- <div class="description-container">
+                <div [innerHTML]="sanitizeDescription(q.description)"></div>
+              </div> -->
 
             </mat-card-content>
+
+            <div class="dc_link-container" (click)="openLinkInNewWindow(q.dc_link)">
+              <!-- Last part dc_link -->
+              <div   [innerHTML]="sanitizeDescription(q.dc_link)"></div>
+            </div>
+                
                 <!-- Update and Delete buttons in one row -->
                 <div  class="flex items-center justify-between">
 
                     <!-- View Full Description -->
-                    <button  [routerLink]="'/admin/view-full-description/' + conId + '/' + qTitle + '/' + q.detailedConId" mat-raised-button color="accent">
+                    <button  [routerLink]="'/admin/admin-view-full-description/' + q.detailedConId" mat-raised-button color="accent">
                         <mat-icon>poll</mat-icon>View
                       </button>
 
@@ -114,14 +123,14 @@
               <!-- Lower section with description and buttons -->
               <div class="flex flex-col justify-between h-full">
                 <!-- Description -->
-                <div [innerHTML]="q.description" class="mb-4 truncate"></div>
+                <!-- <div [innerHTML]="q.description" class="mb-4 truncate"></div> -->
               </div>
 
             </mat-card-content>
                 <!-- Buttons in one row -->
                 <div class="flex items-center justify-between mt-auto">
                   <!-- View Full Description -->
-                  <button [routerLink]="'/admin/view-full-description/' + conId + '/' + qTitle +'/' + q.detailedConId" mat-raised-button color="accent">
+                  <button  [routerLink]="'/admin/admin-view-full-description/' + q.detailedConId" mat-raised-button color="accent">
                     <mat-icon>poll</mat-icon>View
                   </button>
           
@@ -158,12 +167,12 @@
     <!-- Pagination controls -->
   <div class="text-right">
     <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 1"
-            class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-2 rounded-full">
+            class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-4 rounded-full">
       Previous
     </button>
     <span class="mx-4">{{ currentPage }}</span>
     <button mat-raised-button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= detailedcontents.length"
-            class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-2 rounded-full">
+            class=" mat-accent  mat-primary text-white font-bold py-2 px-4 mb-4 rounded-full">
       Next
     </button>
   </div>

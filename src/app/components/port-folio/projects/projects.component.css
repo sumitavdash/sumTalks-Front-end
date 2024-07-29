@@ -1,9 +1,9 @@
- 
+/*  
 
    .container{
     gap:2rem;
     display: grid;
-    white-space: nowrap; /* Prevent containers from wrapping */
+    white-space: nowrap;  
     font-size: 0;
 }
 
@@ -22,12 +22,103 @@
 
 }
 .box {
-  display: inline-block; /* Display boxes inline */
-  width: calc(33.33% - 20px); /* Set width for each box, subtracting margin */
-  margin-right: 20px; /* Add margin between boxes */
+  display: inline-block;  
+  width: calc(33.33% - 20px);  
+  margin-right: 20px;  
   background-color: #e0e0e0;
   padding: 20px;
+  box-sizing: border-box;  
+}
+
+.box:last-child {
+  margin-right: 0; / 
+}
+
+ 
+@media (max-width: 768px) {
+  .box {
+    width: calc(50% - 20px);  
+  }
+}
+
+@media (max-width: 576px) {
+  .box {
+    width: 100%;  
+    margin-right: 0;  
+  }
+} */
+.container {
+  gap: 2rem;
+  display: grid;
+  white-space: nowrap; /* Prevent containers from wrapping */
+  font-size: 0;
+  /* border: 2px solid red; */
+}
+
+h1 {
+  padding: 1rem 0;
+  text-align: center;
+  letter-spacing: 1px;
+  color: var(--darky-pink);
+  outline: 1px solid white;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+:host {
+  display: block;
+  color: white;
+  padding: 3rem 2rem;
+}
+
+.sum{
+  /* border:2px solid red;  */
+   /* overflow: hidden; */
+   padding:20px;
+}
+
+.box {
+  display: inline-block; /* Display boxes inline */
+  width: calc(33.33% - 20px); /* calc(33.33% - 20px) Set width for each box, subtracting margin */
+  height:23rem;
+   border: 3px solid cornsilk;
+  margin-right: 20px; /* Add margin between boxes */
+  background-color: #e0e0e0;
+  /* padding: 20px; */
+  /* gap: 10rem; */
+  /* padding-top: 3rem; */
   box-sizing: border-box; /* Include padding and border in the box's total width */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
+}
+.box a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  display: block; /* Make the link a block element */
+  height: 100%; /* Make the link cover the full height of the box */
+}
+.box img {
+  width: 100%; /* Make the image take up the full width of its container */
+  /* height: auto; Maintain aspect ratio */
+  border-radius: 8px; /* Add border radius to match the box */
+  transition: transform 0.3s ease; /* Add transition for hover effect */
+   object-fit: fill;
+   height: 100%;
+   padding: 1rem;
+    
+}
+ 
+
+/* Optional: Add a hover effect for the images */
+.box img:hover {
+  transform: scale(1.05); /* Slightly enlarge the image on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance the box shadow on hover */
+}
+ 
+
+.box:hover {
+  transform: translateY(-5px); /* Add translateY on hover for lift effect */
+  box-shadow:  0 8px 16px rgba(255, 252, 252, 0.993); /* 0 8px 16px rgba(0, 0, 0, 0.2) Increase box shadow on hover */
 }
 
 .box:last-child {
@@ -45,5 +136,6 @@
   .box {
     width: 100%; /* Adjust to full width on even smaller screens */
     margin-right: 0; /* Remove margin on smaller screens */
+    
   }
 }

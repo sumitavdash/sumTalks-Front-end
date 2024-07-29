@@ -1,51 +1,55 @@
-  <!-- <app-navbar></app-navbar> -->
-   
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 shadow-md rounded-md max-w-md w-full">
-      <div class="text-center"><h2  class="text-blue-800"> <i><strong>Sign Up</strong></i> </h2></div>
-      <!-- Top Section with SumTalks branding -->
-      <div class="text-center mb-6">
-        <div class="bg-pink-500 text-white p-4 rounded-md sliding-text">
-          <h1 class="text-3xl font-bold">Sum....Talks.......</h1>
-        </div>
-      </div>
-  
-      <!-- Yellow Section with form fields -->
-      <div class="bg-yellow-200 p-4 mb-6">
-        <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="space-y-4">
-          <!-- Fullname -->
-          <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Fullname</mat-label>
-            <input formControlName="fullName" matInput placeholder="Enter here" class="w-full">
-          </mat-form-field>
-  
-          <!-- Email -->
-          <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Email</mat-label>
-            <input formControlName="email" matInput placeholder="Enter here" class="w-full">
-          </mat-form-field>
-  
-          <!-- Password -->
-          <mat-form-field appearance="fill" class="w-full">
-            <mat-label>Password</mat-label>
-            <input formControlName="password" matInput placeholder="Enter here" class="w-full">
-            <mat-hint>*(At least One Upper and Lower and Numeric and Special character)</mat-hint>
-          </mat-form-field>
-        </form>
-      </div>
-  
-      <!-- Red Section with buttons -->
-      <div class="bg-pink-500 p-4">
-        <div class="flex justify-center space-x-4">
-          <button type="submit" [disabled]="signUpForm.invalid" class="w-1/2 bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue active:bg-blue-800" [class.cursor-not-allowed]="signUpForm.invalid">
-            Submit
-        </button>
-      
-          <button (click)="resetForm()" class="w-1/2 bg-green-500 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-green active:bg-green-800">
-            Reset
-          </button>
-        </div>
+<div class=" min-h-screen flex items-center justify-center  ">
+  <div class= "bg-white p-6 shadow-md rounded-md max-w-sm w-full mt-10">
+    <div class="text-center">
+      <h2 class="text-blue-800"> <i><strong>Sign Up</strong></i> </h2>
+    </div>
+    <!-- Top Section with SumTalks branding -->
+    <div class="text-center mb-2">
+      <div class="bg-pink-500 text-white p-3 rounded-md sliding-text">
+        <h1 class="text-3xl font-bold">Sum....Talks.......</h1>
       </div>
     </div>
+
+    <!-- Yellow Section with form fields -->
+    <div class="bg-yellow-200 p-3 mb-2">
+      <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="space-y-1">
+        <!-- Fullname -->
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Fullname</mat-label>
+          <input formControlName="fullName" matInput placeholder="Enter here" class="w-full">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Enter here" class="w-full">
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput placeholder="Enter here" class="w-full">
+          <mat-hint> <b class="text-red-900 text-lg">*</b>min 8 symbols combination Ss6@/#/$...</mat-hint>
+        </mat-form-field>
+
+        <!-- Already Account Existed? and Login link -->
+        <div class=" text-black p-4 mb-4 text-center  ">
+          <span>Already have an account?</span>
+          <a href="/login" class="text-blue-500 ml-2" style="color: blue;"><b>Login</b></a>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="bg-pink-500 p-4">
+          <div class="flex justify-center space-x-4">
+            <button type="submit" [disabled]="signUpForm.invalid" class="w-1/2 bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue active:bg-blue-800" [class.cursor-not-allowed]="signUpForm.invalid">
+              Submit
+            </button>
+            <button (click)="resetForm()" class="w-1/2 bg-green-500 text-white py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-green active:bg-green-800">
+              Reset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div>

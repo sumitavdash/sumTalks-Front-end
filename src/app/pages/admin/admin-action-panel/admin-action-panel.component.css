@@ -1,0 +1,11 @@
+/* Custom class for grey header row */
+.grey-header {
+  background-color: grey;
+  color: white;
+}
+
+/* Optionally, you can customize the text alignment, padding, etc. */
+.grey-header .mat-header-cell {
+  text-align: center;
+  padding: 16px;
+}

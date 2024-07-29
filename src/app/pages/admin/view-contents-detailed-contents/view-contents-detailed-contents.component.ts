@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AudioPlayService } from 'src/app/services/audio-play.service';
 import { DetailedContentsService } from 'src/app/services/detailed-contents.service';
 import Swal from 'sweetalert2';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-contents-detailed-contents',
@@ -37,7 +38,8 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
               private _router: Router, 
               private _detailedcontent:DetailedContentsService, 
               private _snack:MatSnackBar,
-              private _audio_play:AudioPlayService){}
+              private _audio_play:AudioPlayService,
+              private sanitizer: DomSanitizer){}
 
   ngOnInit(): void {
 
@@ -151,6 +153,16 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
       });
     }
   });
+  }
+
+  sanitizeDescription(dc_link: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(dc_link);
+  }
+
+  openLinkInNewWindow(url: string): void {
+    if (url) {
+      window.open(url, '_blank');
+    }
   }
 }
 

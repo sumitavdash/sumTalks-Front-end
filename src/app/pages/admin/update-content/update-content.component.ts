@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-content.component.css']
 })
 export class UpdateContentComponent implements OnInit{
+  maxFileSizeMB: number = 8;
   constructor(private _route:ActivatedRoute, 
     private _content:ContentService, 
     private _cat:CategoryService,
@@ -18,6 +19,7 @@ export class UpdateContentComponent implements OnInit{
   conId=0;
    content: any;
   categories:any;
+  originalContent: any;
   // updatedImageFile: File | undefined = undefined;
   conImageFile: File | undefined = undefined;
   ngOnInit(): void {
@@ -27,6 +29,8 @@ export class UpdateContentComponent implements OnInit{
     this._content.getContent(this.conId).subscribe(
       (data:any)=>{
         this.content=data;
+        this.originalContent = data; // Store original data
+        console.log(this.originalContent);
         console.log(this.content);
       },
       (error)=>{
@@ -42,44 +46,59 @@ export class UpdateContentComponent implements OnInit{
     
   }
   // Handle file change for updated image
-  onFileSelected(event: any) {
+  // onFileSelected(event: any) {
+  //   const file: File = event.target.files[0];
+  //   this.conImageFile = file;
+  // }
+  onFileSelected(event: any): void {
     const file: File = event.target.files[0];
-    this.conImageFile = file;
-  }
-
-
-  //update Quiz
-  public updateData(){
-
-    const formData = new FormData();
-
-    // Append existing content data
-    formData.append('conId', this.content.conId);
-    formData.append('title', this.content.title);
-    formData.append('description', this.content.description);
-    formData.append('link_url', this.content.link_url);
-    formData.append('category.cid', this.content.category.cid.toString());
-    formData.append('active', this.content.active.toString());
-
-    // If updated image file is provided, append it
-    if (this.conImageFile !== null && this.conImageFile !== undefined) {
-      formData.append('conImageFile', this.conImageFile);
+    if (file) {
+      const fileType = file.type;
+      if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
+        // Notify user if image format is invalid
+        alert('Only JPEG and PNG images are allowed.');
+        // Optionally clear the selected file
+        event.target.value = null;
+      } else if (file.size > this.maxFileSizeMB * 1024 * 1024) {
+        // Notify user if file size exceeds limit
+        alert(`File size exceeds ${this.maxFileSizeMB} MB limit.`);
+        // Optionally clear the selected file
+        event.target.value = null;
+      } else {
+        this.conImageFile = file;
+      }
     }
-
-
-      // Call the service to update content
-      this._content.updateContent(formData, this.conImageFile).subscribe(
-        (data) => {
-          Swal.fire('Success !!!', 'Content updated', 'success').then((e) => {
-            this._router.navigate(['/admin/contents']);
-          });
-        },
-        (error) => {
-          Swal.fire('Error', 'Error in updating Content', 'error');
-        }
-      );
   }
 
+
+   
+  updateData(): void {
+    if (!this.content) {
+      return; // Handle case where content is not loaded yet
+    }
+  
+    const formData = new FormData();
+    formData.append('content', new Blob([JSON.stringify(this.content)], { type: 'application/json' }));
+    if (this.conImageFile) {
+      formData.append('conImageFile', this.conImageFile, this.conImageFile.name);
+    }
+  
+    this._content.updateContent(formData).subscribe(
+      (data) => {
+        Swal.fire('Success', 'Content updated successfully', 'success').then(() => {
+          this._router.navigate(['/admin/contents']);
+        });
+      },
+      (error) => {
+        console.error('Error updating content:', error);
+        if (error.status === 400) {
+          Swal.fire('Error', 'Invalid file format or file size exceeded', 'error');
+        } else {
+          Swal.fire('Error', 'Error updating content', 'error');
+        }
+      }
+    );
+  }
 }
 
 

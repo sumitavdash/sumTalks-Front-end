@@ -29,9 +29,15 @@
 
 
                    <!-- Field to select a new image -->
-                        <div class="w-full">
+                        <!-- <div class="w-full">
                             <label for="fileInput">Updated Content Image</label>
                             <input id="fileInput"   type="file" (change)="onFileSelected($event)" accept="image/*" />
+                            <span>Choose File</span>
+                          </div> -->
+                          <div class="w-full">
+                            <label for="fileInput">Updated Content Image</label>
+                            <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/*" />
+                            <span *ngIf="maxFileSizeMB">Max file size: {{ maxFileSizeMB }} MB</span>
                             <span>Choose File</span>
                           </div>
 

@@ -1,14 +1,26 @@
-<!-- <div class="mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-gray-200 rounded-lg overflow-hidden shadow-md" style="height: 20vh; width: 40vw;">
-      <div class="p-3">
-        <img src="../assets/beuty.png" class="w-full h-full object-cover" alt="Your Image">
+
+  <div class="container">
+    <div class="column">
+      <div class="row" *ngFor="let skill of skills.slice(0, 3)">
+        <div class="item">
+          <h3 >{{ skill.name }}</h3>
+          <div class="progress-bar">
+            <div class="progress" [ngStyle]="{width: skill.width}" [attr.data-progress]="skill.percentage"></div>
+          </div>
+          <p>{{ skill.displayedPercentage }}%</p>
+        </div>
       </div>
     </div>
-  </div> -->
-  <div class="container">
-     
-      <div class="inner-container">
-        <img src="../assets/beuty.png" class="image" alt="Your Image">
+    <div class="column">
+      <div class="row" *ngFor="let skill of skills.slice(3, 6)">
+        <div class="item">
+          <h3>{{ skill.name }}</h3>
+          <div class="progress-bar">
+            <div class="progress" [ngStyle]="{width: skill.width}" [attr.data-progress]="skill.percentage"></div>
+          </div>
+          <p>{{ skill.displayedPercentage }}%</p>
+        </div>
       </div>
-    
+    </div>
   </div>
+  

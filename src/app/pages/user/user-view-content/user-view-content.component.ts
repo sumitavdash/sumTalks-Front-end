@@ -39,7 +39,7 @@ export class UserViewContentComponent implements OnInit{
       },
       (error)=>{
         console.log(error);
-        this._mat.open("Oops some Failure !!",'close',
+        this._mat.open("Your Turn Expired Ooops, login Honey !!",'close',
       {duration:3000,}
        
     );

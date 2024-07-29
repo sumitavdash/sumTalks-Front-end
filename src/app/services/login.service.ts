@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import baseUrl from './helper';
 
 @Injectable({
@@ -18,12 +18,9 @@ export class LoginService {
 
   //generete token
 
-  public generateToken(loginData: any){
-
-
+  public generateToken(loginData: any): Observable<any> {
     return this.http.post(`${baseUrl}/auth/generate-token`, loginData);
   }
-
 
   //login user: will set token in local storage
 
@@ -82,6 +79,16 @@ export class LoginService {
   public getUserRole(){
     let user=this.getUser()
     return user.authorities[0].authority;
+  }
+   
+   // Initiate password reset
+   public forgotPassword(email: String) {
+    return this.http.post(`${baseUrl}/reset-password/initiate`, { email }); // Send email in request body
+  }
+
+  // Reset password
+  public resetPassword(token: String, newPassword: String) {
+    return this.http.post(`${baseUrl}/reset-password/complete`, { token, newPassword });
   }
 
   // Update user profile

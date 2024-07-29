@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -23,7 +24,8 @@ export class SignupComponent {
 
   constructor(private snackBar: MatSnackBar,
               private userService:UserService,
-              private formBuilder: FormBuilder) 
+              private formBuilder: FormBuilder,
+              private router: Router) 
               
               {
                 // validation
@@ -57,6 +59,8 @@ export class SignupComponent {
                     console.log(data);
                     Swal.fire('Successfully registered', 'Username is ' + data.email, 'success');
                     this.resetForm();
+
+                    this.router.navigate(['/login']);
                   
                   },
                   (error: any) => {

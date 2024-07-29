@@ -4,3 +4,50 @@
     font-style: oblique;
      color: chartreuse;
   }
+  .container {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    
+    flex-grow: 1 !important;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    width: 100%;
+    padding: 8px; /* Add padding to create space between buttons and container edges */
+  }
+  
+
+.custom-button {
+    background: repeating-radial-gradient(circle, #eb3995, #f01477 5%, #eb3995 10%);
+    color: #66FF66; /* Bright light green text color */
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+     
+    font-size: 18px;
+     margin: auto;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+   
+  .custom-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .custom-button .icon {
+    margin-right: 8px;
+  }
+  
+  .custom-button .icon i {
+    vertical-align: middle;
+  }
+  
+   
+  

@@ -1,6 +1,6 @@
 <div class="container grid grid-cols-1 md:grid-cols-3 gap-4">
-    <mat-card *ngFor="let q of contents" class="mt-7 md:col-span-1">
-      <mat-card-header class="bg-gray-800 text-white">
+    <mat-card *ngFor="let q of contents" class="mt-7 md:col-span-1 mb-10">
+      <mat-card-header class="bg-gray-900 text-white">
         <mat-card-title>{{ q.title }}</mat-card-title>
         <mat-card-subtitle class="category-title"><strong>{{ q.category.title }}</strong></mat-card-subtitle>
       </mat-card-header>
@@ -13,21 +13,16 @@
       <mat-card-content class="p-4">
         <p class="text-gray-700">{{ q.description }}</p>
       </mat-card-content>
-      <mat-card-actions class="flex justify-between p-4">
+      <mat-card-actions  class=" bg-gray-800 ">
         <div class="button-container">
-          <!-- Add your buttons as needed -->
-          <button [routerLink]="'/user/view-detailedcontents/' + q.conId + '/' + q.title" mat-stroked-button color="link">
-            <mat-icon>poll</mat-icon>View
+           
+
+          <button [routerLink]="'/user-dashboard/detailedcontent/' + q.conId + '/' + q.title" class="custom-button">
+            <span class="icon"><i class="material-icons">poll</i></span>
+            View
           </button>
-          <button mat-stroked-button color="primary">
-            <mat-icon>format_list_numbered</mat-icon> Link: {{ q.link_url }}
-          </button>
-          <!-- <button [routerLink]="'/admin/content/' + q.conId" mat-stroked-button color="warn">
-            <mat-icon>edit</mat-icon> Update
-          </button> -->
-          <!-- <button mat-stroked-button color="primary" (click)="deleteContent(q.conId)">
-            <mat-icon>delete_forever</mat-icon> Delete
-          </button> -->
+          
+           
         </div>
       </mat-card-actions>
     </mat-card>

@@ -1,14 +1,50 @@
+<!-- <div class="container">
+  <h1><i><strong>some capstone projects</strong></i></h1>
+
+  <div class="sum">
+    <div class="box">
+      <a  [href]="currentFrontendLink" target="_blank">
+        <img [src]="images[currentImageIndex]" alt="Image">
+        <span class="link-text">Frontend</span>
+      </a>
+       
+    </div>
+    <div class="box">
+      <a  [href]="currentFrontendLink" target="_blank">
+        <img [src]="images[(currentImageIndex + 1) % images.length]" alt="Image">
+        <span class="link-text">Frontend</span>
+      </a>
+       
+    </div>
+    <div class="box">
+      <a  [href]="currentFrontendLink" target="_blank">
+        <img [src]="images[(currentImageIndex + 2) % images.length]" alt="Image">
+        <span class="link-text">Frontend</span>
+      </a>
+      
+    </div>
+  </div>
+</div> -->
 
 <div class="conatiner">
   <h1><i><strong>some capstone projects</strong></i></h1>
 
+  <div class="sum"> 
   <div class="box">
+    <a  [href]="projectLinks[currentProjectIndex]" target="_blank"> 
     <img [src]="images[currentImageIndex]" alt="Image">
+  </a>
   </div>
   <div class="box">
+    <a  [href]="projectLinks[(currentProjectIndex +1) % projectLinks.length ]" target="_blank"> 
     <img [src]="images[(currentImageIndex + 1) % images.length]" alt="Image">
+    </a>
   </div>
   <div class="box">
+    <a  [href]="projectLinks[(currentProjectIndex +2) % projectLinks.length ]" target="_blank"> 
     <img [src]="images[(currentImageIndex + 2) % images.length]" alt="Image">
+  </a>
   </div>
 </div>
+</div>  
+ 

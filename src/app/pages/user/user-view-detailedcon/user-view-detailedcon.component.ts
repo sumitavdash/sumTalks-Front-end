@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AudioPlayService } from 'src/app/services/audio-play.service';
 import { DetailedContentsService } from 'src/app/services/detailed-contents.service';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-user-view-detailedcon',
   templateUrl: './user-view-detailedcon.component.html',
@@ -39,7 +39,8 @@ export class UserViewDetailedconComponent implements OnInit{
               private _router: Router, 
               private _detailedcontent:DetailedContentsService, 
               private _snack:MatSnackBar,
-              private _audio_play:AudioPlayService){}
+              private _audio_play:AudioPlayService,
+              private sanitizer: DomSanitizer){}
 
   ngOnInit(): void {
 
@@ -114,6 +115,10 @@ export class UserViewDetailedconComponent implements OnInit{
       // Clear the Map
       this.audioPlayers.clear();
     }
+     
+  }
+  sanitizeDescription(description: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(description);
   }
    
    
@@ -122,6 +127,12 @@ export class UserViewDetailedconComponent implements OnInit{
   //   Redirect to full-description component with detailedConId
   //   this._router.navigate(['/admin/full-description', detailedConId]);
   // }
+
+  openLinkInNewWindow(url: string): void {
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
 
   
 }

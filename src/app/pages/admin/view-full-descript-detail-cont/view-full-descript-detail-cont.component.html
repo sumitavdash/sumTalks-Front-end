@@ -1,0 +1,23 @@
+<mat-card *ngIf="detailedContent" class="custom-card">
+    <!-- Other card content -->
+  
+    <mat-card-header>
+      <mat-card-title class="custom-title">{{ detailedContent.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="custom-card-content">
+      <!-- Back button -->
+      <button class="custom-button" mat-button color="primary" (click)="redirectToPreviousPage()">
+        <mat-icon>arrow_back</mat-icon> Back
+      </button>
+  
+      <!-- Display the long description content -->
+      <div [innerHTML]="detailedContent.description" class="custom-description"></div>
+  
+      <!-- Additional details or buttons as needed -->
+    </mat-card-content>
+  
+    <button class="custom-button mb-2" mat-button color="primary" (click)="redirectToPreviousPage()">
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+  </mat-card>
+  

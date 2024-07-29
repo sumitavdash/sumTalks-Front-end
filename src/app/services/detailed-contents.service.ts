@@ -30,32 +30,22 @@ export class DetailedContentsService {
     return this._http.delete(`${baseUrl}/detailedcontent/${detailedcontentId}`)
   }
 
-  //getting the single question
+  //getting the single detailedcontent description
   public getSingleDetailedContent(detailedconId: any){
-    return this._http.get(`${baseUrl}/detaildedcontent/${detailedconId}`);
+    return this._http.get(`${baseUrl}/detailedcontent/${detailedconId}`);
   }
+  
+  // getting the single detailedcontent description
+public getDescription(detailedconId:any){
+  return this._http.get(`${baseUrl}/detaildedcontent/description/${detailedconId}`);
+}
    
 
-  //update question
-  public updateDetailedContent(detailedcontent: FormData, updatedImageFile?: File, 
-                                       updatedAudioFile?: File):Observable<any>{
-
-                                        // If an updated image file is provided, append it to the FormData
-                  if (updatedImageFile) {
-                          detailedcontent.append('updatedImageFile', updatedImageFile);
-                 }
-                 // If an updated image file is provided, append it to the FormData
-                if (updatedAudioFile) {
-                       detailedcontent.append('updatedAudioFile', updatedAudioFile);
-                }      
-    return this._http.put(`${baseUrl}/detailedcontent/`, detailedcontent);
-
+  //update detailedcontent
+  updateDetailedContent(formData: FormData): Observable<any> {
+    return this._http.put(`${baseUrl}/detailedcontent/`, formData);
   }
 
-  //eval Quiz
-  // public evalQuiz(questions: any){
-  //   return this._http.post(`${baseUrl}/question/eval-quiz`,questions)
-  // }
-
+   
   
 }

@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit {
   triggerAnimation() {
     this.staggeredAnimation = 'trigger';
   }
+  
   isGeneralUser(): boolean {
     return this.login.getUserRole() === 'General USER';
   }

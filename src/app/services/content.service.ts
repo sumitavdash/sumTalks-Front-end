@@ -47,19 +47,22 @@ export class ContentService {
 
   //   return this._http.put(`${baseUrl}/content/`, content);
   // }
-  public updateContent(content: FormData, conImageFile?: File): Observable<any> {
-    // If an updated image file is provided, append it to the FormData
-    if (conImageFile) {
-      content.append('updatedImageFile', conImageFile); // This line is incorrect
-    }
+//   public updateContent(content: FormData, conImageFile?: File): Observable<any> {
+//     // If an updated image file is provided, append it to the FormData
+//     // if (conImageFile) {
+//     //   content.append('updatedImageFile', conImageFile,conImageFile.name); // This line is incorrect
+//     // }
 
-    // The append method expects a string as the second argument, 
-    // so you need to append the updatedImageFile as a separate key-value pair.
-    if (conImageFile) {
-      content.append('conImageFile', conImageFile, conImageFile.name);
-    }
+//     // The append method expects a string as the second argument, 
+//     // so you need to append the updatedImageFile as a separate key-value pair.
+//     if (conImageFile) {
+//       content.append('conImageFile', conImageFile, conImageFile.name);
+//     }
 
-    return this._http.put(`${baseUrl}/content/`, content);
+//     return this._http.put(`${baseUrl}/content/`, content);
+// }
+updateContent(formData: FormData) {
+  return this._http.put(`${baseUrl}/content/`, formData);
 }
 
   //get quizzes of category

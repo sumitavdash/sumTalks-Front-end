@@ -4,9 +4,13 @@
       <mat-card-title>{{ q.title }}</mat-card-title>
       <mat-card-subtitle class="category-title"><strong>{{ q.category.title }}</strong></mat-card-subtitle>
     </mat-card-header>
-    <div class="relative h-32 md:h-64 overflow-hidden">
+    <div class="relative h-64 md:h-64 overflow-hidden ">
       <!-- Set the background image to conImage if available -->
-      <div *ngIf="q.conImage" class="bg-cover bg-center h-full" [style.backgroundImage]="'url(' + q.conImage + ')'"></div>
+      <!-- <div *ngIf="q.conImage" class="bg-cover bg-center h-full 'object-fit': 'cover' " [style.backgroundImage]="'url(' + q.conImage + ')'"></div> -->
+      <div *ngIf="q.conImage"
+      class="bg-cover bg-center h-full"
+      [ngStyle]="{ 'background-image': 'url(' + q.conImage + ')', 'object-fit': 'cover' }">
+ </div>
       <!-- Default background if conImage is not available -->
       <div *ngIf="!q.conImage" class="bg-gray-300 h-full"></div>
     </div>
@@ -19,9 +23,9 @@
         <button [routerLink]="'/admin/view-detailedcontents/' + q.conId + '/' + q.title" mat-stroked-button color="link">
           <mat-icon>poll</mat-icon>View
         </button>
-        <button mat-stroked-button color="primary">
+        <!-- <button mat-stroked-button color="primary">
           <mat-icon>format_list_numbered</mat-icon> Link: {{ q.link_url }}
-        </button>
+        </button> -->
         <button [routerLink]="'/admin/content/' + q.conId" mat-stroked-button color="warn">
           <mat-icon>edit</mat-icon> Update
         </button>

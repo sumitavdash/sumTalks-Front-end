@@ -1,7 +1,7 @@
 import { Component,NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
-import { LoginComponent } from './pages/login/login.component';
+ 
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminWelcomeComponent } from './pages/admin/admin-welcome/admin-welcome.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
@@ -15,21 +15,27 @@ import { ViewCategoryComponent } from './pages/admin/view-category/view-category
 import { ViewContentsDetailedContentsComponent } from './pages/admin/view-contents-detailed-contents/view-contents-detailed-contents.component';
 import { AddDetailedContentsComponent } from './pages/admin/add-detailed-contents/add-detailed-contents.component';
 import { UpdateDetailedContentsComponent } from './pages/admin/update-detailed-contents/update-detailed-contents.component';
-import { FullDescriptionComponent } from './components/full-description/full-description.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { UserViewContentComponent } from './pages/user/user-view-content/user-view-content.component';
+import { LoginComponent } from './pages/login/login.component';
+import { UserViewDetailedconComponent } from './pages/user/user-view-detailedcon/user-view-detailedcon.component';
+import { UserViewFullDescriptionComponent } from './pages/user/user-view-full-description/user-view-full-description.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { AdminActionPanelComponent } from './pages/admin/admin-action-panel/admin-action-panel.component';
+import { ViewFullDescriptDetailContComponent } from './pages/admin/view-full-descript-detail-cont/view-full-descript-detail-cont.component';
 
 const routes: Routes = [
-   
-  {
-    path:'signup',
-    component: SignupComponent,
-    pathMatch:'full',
-  },
 
   {
     path:'',
     component:HomePageComponent,
+    pathMatch:'full',
+  },
+   
+  {
+    path:'signup',
+    component: SignupComponent,
     pathMatch:'full',
   },
   {
@@ -37,6 +43,16 @@ const routes: Routes = [
     component: LoginComponent,
     pathMatch:'full',  
   },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+  },
+  { path: 'reset-password', 
+    component: ResetPasswordComponent,
+   },
+
+   
+   
   {
     path: 'admin',
     component:  AdminDashboardComponent,
@@ -79,10 +95,11 @@ const routes: Routes = [
       },
 
       {
-        path: 'admin/view-full-description/:conId/:title/:detailedConId',
-        component: FullDescriptionComponent,
+        path:'admin-view-full-description/:detailedConId',
+        component: ViewFullDescriptDetailContComponent,
       },
 
+       
       {
         path:"add-detailedcontent/:conId/:title",
         component:AddDetailedContentsComponent,
@@ -91,6 +108,11 @@ const routes: Routes = [
       {
         path:'detailedcontent/:detailedconId',
         component:UpdateDetailedContentsComponent,
+      },
+
+      {
+        path:'admin-action-panel',
+        component:AdminActionPanelComponent,
       },
 
       
@@ -111,8 +133,12 @@ const routes: Routes = [
         component:  UserViewContentComponent,
       },
       {
-        path:'view-detailedcontents/:conId/:title',
-        component:ViewContentsDetailedContentsComponent,
+        path:'detailedcontent/:conId/:title',
+        component: UserViewDetailedconComponent,
+      },
+      {
+        path:'user-view-full-description/:detailedConId',
+        component: UserViewFullDescriptionComponent,
       },
  
       //

@@ -1,13 +1,13 @@
  <!-- navbar.component.html -->
 
-<div class="bg-pink-500 text-white fixed w-full top-0 z-10">
+<div class="bg-pink-300 text-white fixed w-full top-0 z-10">
   <div class=" container mx-auto px-4 flex justify-between items-center py-2">
 
-    <!-- Left side: Menu button and SumTalks title -->
+    <!--cyan-300 Left side: Menu button and SumTalks title -->
     <div class="flex items-center">
       <!-- Angular Material menu button -->
       <!-- if(this.login.isLoggedIn() && this.login.getUserRole()==='General USER'){ -->
-      <button mat-icon-button *ngIf="isGeneralUser()" [matMenuTriggerFor]="menu" class="mr-2">
+      <button mat-icon-button *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" class="mr-2">
         <mat-icon>menu</mat-icon>
       </button>
 

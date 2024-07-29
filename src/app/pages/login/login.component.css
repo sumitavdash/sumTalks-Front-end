@@ -13,6 +13,10 @@
     overflow: hidden;
     animation: slide 5s linear infinite alternate;
   }
+  .forgot-password-link {
+    cursor: pointer;
+    /* text-decoration: underline; */
+  }
   
   @keyframes slide {
     to {
