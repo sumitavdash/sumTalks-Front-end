@@ -8,60 +8,60 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-update-detailed-contents',
   templateUrl: './update-detailed-contents.component.html',
-  styleUrls: ['./update-detailed-contents.component.css']
+  styleUrls: ['./update-detailed-contents.component.css'],
 })
-export class UpdateDetailedContentsComponent implements OnInit{
-  
+export class UpdateDetailedContentsComponent implements OnInit {
   maxFileSizeMB: number = 5;
-  constructor(private _route:ActivatedRoute, 
-    private _detailedcontent:DetailedContentsService, 
-    private _content:ContentService,
-    private _router:Router){}
+  constructor(
+    private _route: ActivatedRoute,
+    private _detailedcontent: DetailedContentsService,
+    private _content: ContentService,
+    private _router: Router
+  ) {}
 
-    //public Editor=ClassicEditor;
-    public Editor: any = ClassicEditor;
-    detailedconId=0;
-    contents:any;
-    detailedcontent: any;
-    // detailedcontent = {
-    //   content: {
-    //     conId: '',
-    //   },
-    //   title: '',
-    //   detailedconId:'',
-    //   description: '',
-    //   dc_link: '',
-    //   dc_imageFile: null as File | null,
-    //   dc_audioFile: null as File | null,
-    // };
-     
-    dc_imageFile: File | undefined = undefined;
-    dc_audioFile: File | undefined = undefined;
- 
+  //public Editor=ClassicEditor;
+  public Editor: any = ClassicEditor;
+  detailedconId = 0;
+  contents: any;
+  detailedcontent: any;
+  // detailedcontent = {
+  //   content: {
+  //     conId: '',
+  //   },
+  //   title: '',
+  //   detailedconId:'',
+  //   description: '',
+  //   dc_link: '',
+  //   dc_imageFile: null as File | null,
+  //   dc_audioFile: null as File | null,
+  // };
 
-     
+  dc_imageFile: File | undefined = undefined;
+  dc_audioFile: File | undefined = undefined;
+
   ngOnInit(): void {
-
-    this.detailedconId=this._route.snapshot.params['detailedconId'];
+    this.detailedconId = this._route.snapshot.params['detailedconId'];
     alert(this.detailedconId);
-    this._detailedcontent.getSingleDetailedContent(this.detailedconId).subscribe(
-      (data:any)=>{
-        this.detailedcontent=data;
-        console.log(this.detailedcontent);
+    this._detailedcontent
+      .getSingleDetailedContent(this.detailedconId)
+      .subscribe(
+        (data: any) => {
+          this.detailedcontent = data;
+          console.log(this.detailedcontent);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    this._content.getActiveContents().subscribe(
+      (data: any) => {
+        this.contents = data;
       },
-      (error)=>{
-        console.log(error);
+      (error) => {
+        alert('Error in loading active contents');
       }
     );
-    this._content.getActiveContents().subscribe((data: any)=>{
-      this.contents= data;
-    },
-    (error)=>{
-      alert("Error in loading active contents");
-    });
-     
   }
- 
 
   onImageSelected(event: any): void {
     const file: File = event.target.files[0];
@@ -103,20 +103,17 @@ export class UpdateDetailedContentsComponent implements OnInit{
     }
   }
 
-
-
-
   // updateData(): void {
   //   if (!this.content) {
   //     return; // Handle case where content is not loaded yet
   //   }
-  
+
   //   const formData = new FormData();
   //   formData.append('content', new Blob([JSON.stringify(this.content)], { type: 'application/json' }));
   //   if (this.conImageFile) {
   //     formData.append('conImageFile', this.conImageFile, this.conImageFile.name);
   //   }
-  
+
   //   this._content.updateContent(formData).subscribe(
   //     (data) => {
   //       Swal.fire('Success', 'Content updated successfully', 'success').then(() => {
@@ -141,32 +138,53 @@ export class UpdateDetailedContentsComponent implements OnInit{
     }
 
     const formData = new FormData();
-    formData.append('detailedcontent', new Blob([JSON.stringify(this.detailedcontent)], { type: 'application/json' }));
+    formData.append(
+      'detailedcontent',
+      new Blob([JSON.stringify(this.detailedcontent)], {
+        type: 'application/json',
+      })
+    );
     if (this.dc_imageFile) {
-      formData.append('dc_imageFile', this.dc_imageFile, this.dc_imageFile.name);
+      formData.append(
+        'dc_imageFile',
+        this.dc_imageFile,
+        this.dc_imageFile.name
+      );
     }
     if (this.dc_audioFile) {
-      formData.append('dc_audioFile', this.dc_audioFile, this.dc_audioFile.name);
+      formData.append(
+        'dc_audioFile',
+        this.dc_audioFile,
+        this.dc_audioFile.name
+      );
     }
 
     // Call the service to update content
     this._detailedcontent.updateDetailedContent(formData).subscribe(
       (data) => {
-        Swal.fire('Success !!!', 'DetailedContent updated', 'success').then((e) => {
-          this._router.navigate(['/admin/view-detailedcontents/:conId/:title']);
-        });
+        Swal.fire('Success !!!', 'DetailedContent updated', 'success').then(
+          (e) => {
+            this._router.navigate([
+              '/admin/view-detailedcontents',
+              this.detailedcontent.content.conId,
+              this.detailedcontent.content.title,
+            ]);
+            // this._router.navigate(['/admin/view-detailedcontents', this.conId, this.qTitle]);
+          }
+        );
       },
       (error) => {
         console.error('Error updating content:', error);
         if (error.status === 400) {
-          Swal.fire('Error', 'Invalid file format or file size exceeded', 'error');
+          Swal.fire(
+            'Error',
+            'Invalid file format or file size exceeded',
+            'error'
+          );
         } else {
           Swal.fire('Error', 'Error updating content', 'error');
         }
       }
     );
   }
-
 }
-
-

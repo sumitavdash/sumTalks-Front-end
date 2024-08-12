@@ -1,10 +1,10 @@
-.footer-container {
-    /*ff5dcc background : E1BEE7 repeating-radial-gradient(circle, #eb3995, #f01477 5%, #eb3995  10%);#A5D6A7 #80CBC4 */
+/* .footer-container {
+     
     background-color:  #ff5dcc;
     color: #491b0e;
     padding: 20px 0;
   }
-  /* #440124 #ff0072*/
+   
   .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -103,4 +103,105 @@
 .social-icons a.gmail,
 .social-icons a.twitter {
   background-size: cover;
+} */
+.footer-container {
+  background-color: #ff5dcc;
+  color: #491b0e;
+  padding: 20px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links a {
+  display: inline-block;
+  margin-right: 20px;
+  font-weight: bold;
+  color: #666666;
+  text-decoration: none;
+  margin-bottom: 2px;
+  margin-left: 1px;
+}
+
+.footer-links a:hover {
+  color: #1a1818;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.footer-right .copyright p {
+  color: #000000;
+  font-weight: bold;
+}
+
+.copyright {
+  margin-top: 10px; /* Adjusted to position the copyright below the social icons */
+}
+
+.contact-link {
+  margin-right: 20px;
+  pointer-events: none;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Added margin-bottom to separate social icons from the copyright text */
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 15px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+}
+
+.social-icons a:hover {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.social-icons a.github,
+.social-icons a.linkedin,
+.social-icons a.gmail,
+.social-icons a.twitter {
+  background-size: cover;
+}
+
+.social-icons a.github {
+  background-image: url("../../../../assets/github.png");
+}
+
+.social-icons a.linkedin {
+  background-image: url("../../../../assets/linkedin.png");
+}
+
+.social-icons a.gmail {
+  background-image: url("../../../../assets/gmail.png");
+}
+
+.social-icons a.twitter {
+  background-image: url("../../../../assets/twitter.png");
 }

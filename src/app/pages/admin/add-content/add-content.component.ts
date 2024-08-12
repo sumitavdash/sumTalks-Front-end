@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { ContentService } from 'src/app/services/content.service';
 import Swal from 'sweetalert2';
@@ -8,40 +9,42 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-content',
   templateUrl: './add-content.component.html',
-  styleUrls: ['./add-content.component.css']
+  styleUrls: ['./add-content.component.css'],
 })
-export class AddContentComponent implements OnInit{
-
+export class AddContentComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   categories: any[] = [];
 
-   contentData={
-    title:'',
-    description:'',
+  contentData = {
+    title: '',
+    description: '',
     conImage: null as File | null,
-     link_url:'',
-    active:'true',
-  category: {
-    cid:'',
-  },
+    link_url: '',
+    active: 'true',
+    category: {
+      cid: '',
+    },
   };
 
-  constructor(private _cat:CategoryService, private snack: MatSnackBar, private _content:ContentService) {}
+  constructor(
+    private _cat: CategoryService,
+    private snack: MatSnackBar,
+    private _content: ContentService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-
     this._cat.Categories().subscribe(
-      (data:any)=>{
+      (data: any) => {
         //categories load
-        this.categories=data;
-       console.log(this.categories);
+        this.categories = data;
+        console.log(this.categories);
       },
-      (error)=>{
+      (error) => {
         console.log(error);
-        Swal.fire('Error !','error in loading data from server','error');
+        Swal.fire('Error !', 'error in loading data from server', 'error');
       }
     );
-    
   }
 
   // Function to handle file input change
@@ -56,20 +59,23 @@ export class AddContentComponent implements OnInit{
     }
   }
   //add quiz
-  addContent(){
-     if(this.contentData.title.trim()=='' || this.contentData.title==null){
-      this.snack.open("title Required !!", 'Ok',{
-        duration:3000,
+  addContent() {
+    if (this.contentData.title.trim() == '' || this.contentData.title == null) {
+      this.snack.open('title Required !!', 'Ok', {
+        duration: 3000,
       });
       return;
-     }
-     if(this.contentData.description.trim()=='' || this.contentData.description==null){
-      this.snack.open("description Required !!", 'Ok',{
-        duration:3000,
+    }
+    if (
+      this.contentData.description.trim() == '' ||
+      this.contentData.description == null
+    ) {
+      this.snack.open('description Required !!', 'Ok', {
+        duration: 3000,
       });
       return;
-     }
-     if (this.contentData.conImage == null) {
+    }
+    if (this.contentData.conImage == null) {
       this.snack.open('Content Image Required !!', 'Ok', {
         duration: 3000,
       });
@@ -82,10 +88,9 @@ export class AddContentComponent implements OnInit{
     //   return;
     //  }
 
-     //validation.. for others
+    //validation.. for others
 
-
-      // Create FormData
+    // Create FormData
     const formData: FormData = new FormData();
     formData.append('title', this.contentData.title);
     formData.append('description', this.contentData.description);
@@ -94,44 +99,38 @@ export class AddContentComponent implements OnInit{
     formData.append('active', this.contentData.active);
     formData.append('category.cid', this.contentData.category.cid);
 
-
     // Set headers for file upload
     // const headers = new HttpHeaders({
     //   'Content-Type': 'multipart/form-data',
     // });
-      
+
     console.log('FormData:', formData);
 
-     //call server
-     this._content.addContent(formData).subscribe(
-      (_data: any)=>{
-        Swal.fire('Success','Content Added HURRAY!','success');
+    //call server
+    this._content.addContent(formData).subscribe(
+      (_data: any) => {
+        Swal.fire('Success', 'Content Added HURRAY!', 'success');
 
         this.contentData.conImage = null;
         this.fileInput.nativeElement.value = null;
 
-
         //data clear
-       this.contentData={
-          title:'',
-          description:'',
-           conImage:  null,
-           link_url:'',
-          active:'true',
-        category: {
-          cid:'',
-        },
+        this.contentData = {
+          title: '',
+          description: '',
+          conImage: null,
+          link_url: '',
+          active: 'true',
+          category: {
+            cid: '',
+          },
         };
+        this._router.navigate(['/admin/contents']);
       },
-      (error: any)=>{
-        Swal.fire('Error!!','Error While Adding Content','error');
+      (error: any) => {
+        Swal.fire('Error!!', 'Error While Adding Content', 'error');
         console.log(error);
       }
-
-     );
+    );
   }
-
 }
-
-
-

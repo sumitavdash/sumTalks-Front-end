@@ -1,42 +1,44 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import  ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ActivatedRoute, Router } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { DetailedContentsService } from 'src/app/services/detailed-contents.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-detailed-contents',
   templateUrl: './add-detailed-contents.component.html',
-  styleUrls: ['./add-detailed-contents.component.css']
+  styleUrls: ['./add-detailed-contents.component.css'],
 })
-export class AddDetailedContentsComponent implements OnInit{
-
+export class AddDetailedContentsComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   @ViewChild('audioInput') audioInput!: ElementRef;
-  public Editor=ClassicEditor;
+  public Editor = ClassicEditor;
   conId: any;
   qTitle: any;
-  detailedcontent={
-    content:{
+  detailedcontent = {
+    content: {
       conId: '',
-
+      title: '',
     },
     title: '',
     description: '',
-    dc_link: '',  // Updated field name
+    dc_link: '', // Updated field name
     dc_imageFile: null as File | null,
     dc_audioFile: null as File | null,
   };
-  
- 
-  constructor(private _route:ActivatedRoute, private _detailedcontent:DetailedContentsService){}
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _detailedcontent: DetailedContentsService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.conId=this._route.snapshot.params['conId'];
-    this.qTitle=this._route.snapshot.params['title'];
+    this.conId = this._route.snapshot.params['conId'];
+    this.qTitle = this._route.snapshot.params['title'];
     // console.log(this.qId);
     console.log(this.conId, this.qTitle);
-    this.detailedcontent.content['conId']=this.conId;
+    this.detailedcontent.content['conId'] = this.conId;
   }
 
   onImageSelected(event: any): void {
@@ -61,20 +63,25 @@ export class AddDetailedContentsComponent implements OnInit{
     }
   }
 
-  formSubmit(){
+  formSubmit() {
     // alert("testing");
-    if(this.detailedcontent.description.trim()=='' ||this.detailedcontent.description==null){
+    if (
+      this.detailedcontent.description.trim() == '' ||
+      this.detailedcontent.description == null
+    ) {
       return;
     }
-    if(this.detailedcontent.title.trim()=='' ||this.detailedcontent.title==null){
+    if (
+      this.detailedcontent.title.trim() == '' ||
+      this.detailedcontent.title == null
+    ) {
       return;
     }
-     
 
     const formData = new FormData();
     formData.append('title', this.detailedcontent.title);
     formData.append('description', this.detailedcontent.description);
-    formData.append('dc_link', this.detailedcontent.dc_link);  // Updated field name
+    formData.append('dc_link', this.detailedcontent.dc_link); // Updated field name
     formData.append('content.conId', this.detailedcontent.content.conId);
 
     formData.append('dc_imageFile', this.detailedcontent.dc_imageFile as File);
@@ -85,23 +92,40 @@ export class AddDetailedContentsComponent implements OnInit{
 
     console.log('FormData:', formData);
     //form submit
-    this._detailedcontent.addDetailedContent(formData).subscribe((data:any)=>{
-      Swal.fire('Success', 'Detaildcontent Added', 'success');
+    this._detailedcontent.addDetailedContent(formData).subscribe(
+      (data: any) => {
+        Swal.fire('Success', 'Detaildcontent Added', 'success');
+        // Swal.fire({
+        //   title: 'Success',
+        //   text: 'Detaildcontent Added',
+        //   icon: 'success',
+        //   width: '300px', // Set the width to make the Swal box smaller
+
+        // });
         this.detailedcontent.title = '';
         this.detailedcontent.description = '';
-        this.detailedcontent.dc_link = '';  // Updated field name
-        this. detailedcontent. dc_imageFile = null;
-        this.fileInput.nativeElement.value = '';  // Clear image file input
-        this. detailedcontent. dc_audioFile = null;
-        this.audioInput.nativeElement.value = '';  // Clear audio file input
+        this.detailedcontent.dc_link = ''; // Updated field name
+        this.detailedcontent.dc_imageFile = null;
+        this.fileInput.nativeElement.value = ''; // Clear image file input
+        this.detailedcontent.dc_audioFile = null;
+        this.audioInput.nativeElement.value = ''; // Clear audio file input
 
-
+        this._router.navigate([
+          '/admin/view-detailedcontents',
+          this.conId,
+          this.qTitle,
+        ]);
       },
-    (error)=>{
-
-      Swal.fire('Error','Error In Adding Details Contents','error');
-    });
+      (error) => {
+        console.log('Error response:', error);
+        Swal.fire('Error', 'Error In Adding Details Contents', 'error');
+        // Swal.fire({
+        //   title: 'Error',
+        //   text: 'Error In Adding Details Contents',
+        //   icon: 'error',
+        //   width: '400px', // Set the width to make the Swal box smaller
+        // });
+      }
+    );
   }
 }
-
-
