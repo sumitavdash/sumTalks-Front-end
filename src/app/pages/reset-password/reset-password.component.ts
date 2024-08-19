@@ -11,13 +11,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+  styleUrls: ['./reset-password.component.css'],
 })
 export class ResetPasswordComponent {
   resetForm: FormGroup;
@@ -29,16 +34,22 @@ export class ResetPasswordComponent {
     private loginService: LoginService,
     private formBuilder: FormBuilder
   ) {
-    this.resetForm = this.formBuilder.group({
-      newPassword: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        this.validatePasswordStrength
-      ]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validators: this.passwordMatchValidator
-    });
+    this.resetForm = this.formBuilder.group(
+      {
+        newPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            this.validatePasswordStrength,
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validators: this.passwordMatchValidator,
+      }
+    );
   }
 
   onSubmit() {
@@ -57,18 +68,24 @@ export class ResetPasswordComponent {
 
     this.loginService.resetPassword(token, newPassword).subscribe(
       (response: any) => {
-        console.log(response);
+        // console.log(response);
         this.snackBar.open(response.message, 'Close', { duration: 3000 });
         this.router.navigate(['/login']);
       },
-      error => {
+      (error) => {
         console.error(error);
-        this.snackBar.open('An error occurred while resetting password', 'Close', { duration: 3000 });
+        this.snackBar.open(
+          'An error occurred while resetting password',
+          'Close',
+          { duration: 3000 }
+        );
       }
     );
   }
 
-  private validatePasswordStrength(control: AbstractControl): { [key: string]: boolean } | null {
+  private validatePasswordStrength(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
     const value: string = control.value;
 
     const uppercaseRegex = /[A-Z]/;
@@ -82,16 +99,18 @@ export class ResetPasswordComponent {
       !numericRegex.test(value) ||
       !specialCharacterRegex.test(value)
     ) {
-      return { 'passwordStrength': true };
+      return { passwordStrength: true };
     }
 
     return null;
   }
 
-  private passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  private passwordMatchValidator(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
     const newPassword = control.get('newPassword')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
 
-    return newPassword === confirmPassword ? null : { 'passwordMismatch': true };
+    return newPassword === confirmPassword ? null : { passwordMismatch: true };
   }
 }

@@ -9,9 +9,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-view-contents-detailed-contents',
   templateUrl: './view-contents-detailed-contents.component.html',
-  styleUrls: ['./view-contents-detailed-contents.component.css']
+  styleUrls: ['./view-contents-detailed-contents.component.css'],
 })
-export class ViewContentsDetailedContentsComponent implements OnInit{
+export class ViewContentsDetailedContentsComponent implements OnInit {
   conId: any;
   qTitle: any;
   detailedcontents: {
@@ -21,41 +21,41 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
     dc_link: string;
     dc_imageUrl: string;
     dc_audioPath: string;
-    dc_imageFile: any;  // Adjust the type as per your MultipartFile structure
-    dc_audioFile: any; 
+    dc_imageFile: any; // Adjust the type as per your MultipartFile structure
+    dc_audioFile: any;
   }[] = [];
-   
+
   currentPage = 1;
   itemsPerPage = 3;
- audioPlayers: Map<number, HTMLAudioElement> = new Map();
-  
- //audioPlayer: HTMLAudioElement | undefined;
+  audioPlayers: Map<number, HTMLAudioElement> = new Map();
 
+  //audioPlayer: HTMLAudioElement | undefined;
 
-
-
-  constructor(private _route:ActivatedRoute, 
-              private _router: Router, 
-              private _detailedcontent:DetailedContentsService, 
-              private _snack:MatSnackBar,
-              private _audio_play:AudioPlayService,
-              private sanitizer: DomSanitizer){}
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _detailedcontent: DetailedContentsService,
+    private _snack: MatSnackBar,
+    private _audio_play: AudioPlayService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-
-    this.conId=this._route.snapshot.params['conId'];
-    this.qTitle=this._route.snapshot.params['title'];
+    this.conId = this._route.snapshot.params['conId'];
+    this.qTitle = this._route.snapshot.params['title'];
     // console.log(this.qId);
     // console.log(this.qTitle);
-    this._detailedcontent.getDetailedContentsOfContent(this.conId).subscribe((data:any)=>{
-      console.log(data);
-      this.detailedcontents=data;
-    },(error)=>{
-      console.log(error);
-    })
-    
+    this._detailedcontent.getDetailedContentsOfContent(this.conId).subscribe(
+      (data: any) => {
+        // console.log(data);
+        this.detailedcontents = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-   
+
   nextPage() {
     this.currentPage++;
   }
@@ -66,12 +66,10 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
     }
   }
 
-
   // playAudio(audioPath: string): void {
   //   const audio = new Audio(audioPath);
   //   audio.play();
   // }
-   
 
   playAudio(detailedConId: any): void {
     //console.log('DetailedConId:', detailedConId);
@@ -115,8 +113,6 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
       this.audioPlayers.clear();
     }
   }
-   
-   
 
   // viewFullDescription(detailedConId: any): void {
   //   Redirect to full-description component with detailedConId
@@ -124,35 +120,42 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
   // }
 
   //delete question
-  deleteDetailedContent(detailedConId: any){
-  // alert(qId);
+  deleteDetailedContent(detailedConId: any) {
+    // alert(qId);
 
-  Swal.fire({
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonText:'Delete',
-    title:'Are You Sure ! Want To Delete This Detailed Content'
-  }).then((result)=>{
+    Swal.fire({
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      title: 'Are You Sure ! Want To Delete This Detailed Content',
+    }).then((result) => {
+      // alert("testing");
+      if (result.isConfirmed) {
+        //if confirmed
+        this._detailedcontent.deleteDetailedContent(detailedConId).subscribe(
+          (data: any) => {
+            this._snack.open('Detailed Content Deleted Successfully', 'Ok', {
+              duration: 3000,
+            });
 
-    // alert("testing");
-    if(result.isConfirmed){
-      //if confirmed
-      this._detailedcontent.deleteDetailedContent(detailedConId).subscribe((data:any)=>{
-
-        this._snack.open('Detailed Content Deleted Successfully','Ok',{
-          duration:3000,
-        });
-
-        this.detailedcontents=this.detailedcontents.filter((detailedcontent)=> detailedcontent.detailedConId != detailedConId);
-        
-      },(error: any)=>{
-        this._snack.open('Error In Deleting This Detailed Content','Close',{
-          duration:3000,
-        });
-        console.log(error);
-      });
-    }
-  });
+            this.detailedcontents = this.detailedcontents.filter(
+              (detailedcontent) =>
+                detailedcontent.detailedConId != detailedConId
+            );
+          },
+          (error: any) => {
+            this._snack.open(
+              'Error In Deleting This Detailed Content',
+              'Close',
+              {
+                duration: 3000,
+              }
+            );
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 
   sanitizeDescription(dc_link: string): SafeHtml {
@@ -165,4 +168,3 @@ export class ViewContentsDetailedContentsComponent implements OnInit{
     }
   }
 }
-

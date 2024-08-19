@@ -47,7 +47,7 @@ export class UpdateDetailedContentsComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.detailedcontent = data;
-          console.log(this.detailedcontent);
+          // console.log(this.detailedcontent);
         },
         (error) => {
           console.log(error);

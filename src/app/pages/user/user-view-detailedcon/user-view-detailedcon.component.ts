@@ -7,12 +7,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-user-view-detailedcon',
   templateUrl: './user-view-detailedcon.component.html',
-  styleUrls: ['./user-view-detailedcon.component.css']
+  styleUrls: ['./user-view-detailedcon.component.css'],
 })
-export class UserViewDetailedconComponent implements OnInit{
-
- 
- 
+export class UserViewDetailedconComponent implements OnInit {
   conId: any;
   qTitle: any;
   detailedcontents: {
@@ -22,41 +19,41 @@ export class UserViewDetailedconComponent implements OnInit{
     dc_link: string;
     dc_imageUrl: string;
     dc_audioPath: string;
-    dc_imageFile: any;  // Adjust the type as per your MultipartFile structure
-    dc_audioFile: any; 
+    dc_imageFile: any; // Adjust the type as per your MultipartFile structure
+    dc_audioFile: any;
   }[] = [];
-   
+
   currentPage = 1;
   itemsPerPage = 3;
- audioPlayers: Map<number, HTMLAudioElement> = new Map();
-  
- //audioPlayer: HTMLAudioElement | undefined;
+  audioPlayers: Map<number, HTMLAudioElement> = new Map();
 
+  //audioPlayer: HTMLAudioElement | undefined;
 
-
-
-  constructor(private _route:ActivatedRoute, 
-              private _router: Router, 
-              private _detailedcontent:DetailedContentsService, 
-              private _snack:MatSnackBar,
-              private _audio_play:AudioPlayService,
-              private sanitizer: DomSanitizer){}
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _detailedcontent: DetailedContentsService,
+    private _snack: MatSnackBar,
+    private _audio_play: AudioPlayService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
-
-    this.conId=this._route.snapshot.params['conId'];
-    this.qTitle=this._route.snapshot.params['title'];
+    this.conId = this._route.snapshot.params['conId'];
+    this.qTitle = this._route.snapshot.params['title'];
     // console.log(this.qId);
     // console.log(this.qTitle);
-    this._detailedcontent.getDetailedContentsOfContent(this.conId).subscribe((data:any)=>{
-      console.log(data);
-      this.detailedcontents=data;
-    },(error)=>{
-      console.log(error);
-    })
-    
+    this._detailedcontent.getDetailedContentsOfContent(this.conId).subscribe(
+      (data: any) => {
+        // console.log(data);
+        this.detailedcontents = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-   
+
   nextPage() {
     this.currentPage++;
   }
@@ -67,12 +64,10 @@ export class UserViewDetailedconComponent implements OnInit{
     }
   }
 
-
   // playAudio(audioPath: string): void {
   //   const audio = new Audio(audioPath);
   //   audio.play();
   // }
-   
 
   playAudio(detailedConId: any): void {
     //console.log('DetailedConId:', detailedConId);
@@ -115,13 +110,10 @@ export class UserViewDetailedconComponent implements OnInit{
       // Clear the Map
       this.audioPlayers.clear();
     }
-     
   }
   sanitizeDescription(description: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(description);
   }
-   
-   
 
   // viewFullDescription(detailedConId: any): void {
   //   Redirect to full-description component with detailedConId
@@ -133,10 +125,4 @@ export class UserViewDetailedconComponent implements OnInit{
       window.open(url, '_blank');
     }
   }
-
-  
 }
-
-
-
-

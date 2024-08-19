@@ -63,7 +63,7 @@ export class SignupComponent {
     this.userService.addUser(this.signUpForm.value).subscribe(
       (data: any) => {
         // Success
-        console.log(data);
+        // console.log(data);
         // Swal.fire('Successfully registered', 'Username is ' + data.email, 'success');
 
         this.snackBar.open(

@@ -37,7 +37,7 @@ export class AddDetailedContentsComponent implements OnInit {
     this.conId = this._route.snapshot.params['conId'];
     this.qTitle = this._route.snapshot.params['title'];
     // console.log(this.qId);
-    console.log(this.conId, this.qTitle);
+    // console.log(this.conId, this.qTitle);
     this.detailedcontent.content['conId'] = this.conId;
   }
 
@@ -90,7 +90,7 @@ export class AddDetailedContentsComponent implements OnInit {
       formData.append('dc_audioFile', this.detailedcontent.dc_audioFile);
     }
 
-    console.log('FormData:', formData);
+    // console.log('FormData:', formData);
     //form submit
     this._detailedcontent.addDetailedContent(formData).subscribe(
       (data: any) => {

@@ -38,7 +38,7 @@ export class AddContentComponent implements OnInit {
       (data: any) => {
         //categories load
         this.categories = data;
-        console.log(this.categories);
+        // console.log(this.categories);
       },
       (error) => {
         console.log(error);
@@ -104,7 +104,7 @@ export class AddContentComponent implements OnInit {
     //   'Content-Type': 'multipart/form-data',
     // });
 
-    console.log('FormData:', formData);
+    // console.log('FormData:', formData);
 
     //call server
     this._content.addContent(formData).subscribe(
